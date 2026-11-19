@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>認識化學治療：副作用與護理完全指南</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Font Awesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- 載入繁體中文與英文字型 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind 自訂色彩設定 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D53F8C',    /* 溫暖深粉色 */
+                        accent: '#ED64A6',     /* 柔和玫瑰粉 */
+                        softbg: '#FFF5F7',     /* 淡粉背景 */
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans TC"', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            transition: font-size 0.2s ease;
+        }
+        /* 手機大字體模式 */
+        html.large-text {
+            font-size: 19px;
+        }
+        body {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+            background-color: #FFF5F7;
+            color: #4A4A4A;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        /* 避免頂部固定導覽列遮住錨點標題 */
+        section[id], footer[id] {
+            scroll-margin-top: 7.5rem;
+        }
+        /* 首頁主視覺溫暖粉色漸層 */
+        .hero-bg {
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE4EC 55%, #FFD6E4 100%);
+        }
+        /* 隱藏橫向捲動條（手機快速標籤列使用） */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* 手風琴展開收合動畫 */
+        .accordion-content {
+            transition: max-height 0.35s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-btn.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-pink-200 selection:text-pink-900">
+
+    <!-- 頂部固定導覽列 -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-pink-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-14 md:h-16">
+                <!-- 標題與絲帶圖示 -->
+                <a href="#" class="flex items-center min-w-0">
+                    <i class="fa-solid fa-ribbon text-primary text-xl md:text-2xl mr-2 shrink-0"></i>
+                    <span class="font-bold text-lg md:text-xl text-primary truncate">乳癌化療衛教指南</span>
+                </a>
+                
+                <div class="flex items-center space-x-2 md:space-x-6 shrink-0">
+                    <!-- 電腦版選單 -->
+                    <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                        <a href="#mechanism" class="text-gray-600 hover:text-primary transition">化療原理</a>
+                        <a href="#side-effects" class="text-gray-600 hover:text-primary transition">副作用與護理</a>
+                        <a href="#conclusion" class="text-gray-600 hover:text-primary transition">結語</a>
+                        <a href="#contact" class="text-primary hover:text-pink-700 font-semibold transition">
+                            <i class="fa-solid fa-comments mr-1"></i>聯絡方式
+                        </a>
+                    </div>
+                    <!-- 字體大小切換按鈕（方便手機與長輩閱讀） -->
+                    <button id="font-toggle-btn" type="button" onclick="toggleFontSize()" class="flex items-center bg-pink-50 hover:bg-pink-100 text-primary border border-pink-200 text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full transition active:scale-95" aria-label="切換字體大小">
+                        <i class="fa-solid fa-text-height mr-1.5"></i>
+                        <span id="font-toggle-label">大字體</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 手機版快速跳轉標籤列 -->
+            <div class="flex md:hidden items-center space-x-2 pb-2.5 overflow-x-auto no-scrollbar">
+                <a href="#mechanism" class="shrink-0 text-xs font-medium bg-pink-50 text-primary px-3.5 py-1.5 rounded-full border border-pink-200 active:bg-pink-100">化療原理</a>
+                <a href="#side-effects" class="shrink-0 text-xs font-medium bg-pink-50 text-primary px-3.5 py-1.5 rounded-full border border-pink-200 active:bg-pink-100">副作用與護理</a>
+                <a href="#conclusion" class="shrink-0 text-xs font-medium bg-pink-50 text-primary px-3.5 py-1.5 rounded-full border border-pink-200 active:bg-pink-100">暖心結語</a>
+                <a href="#contact" class="shrink-0 text-xs font-medium bg-primary text-white px-3.5 py-1.5 rounded-full shadow-sm active:opacity-90">
+                    <i class="fa-solid fa-comments mr-1"></i>聯絡方式
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首頁主視覺 Hero 區塊 -->
+    <header class="hero-bg py-10 sm:py-14 lg:py-20 border-b border-pink-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-8">
+            <div class="md:w-3/5 text-center md:text-left">
+                <span class="inline-block bg-white/80 text-primary text-xs sm:text-sm font-semibold px-3.5 py-1 rounded-full border border-pink-200 mb-3 shadow-sm">
+                    <i class="fa-solid fa-heart mr-1.5 text-rose-400"></i>乳癌個案專屬衛教手冊
+                </span>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-primary leading-tight mb-3 md:mb-4">
+                    認識化學治療：<br>副作用與護理完全指南
+                </h1>
+                <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
+                    理解身體變化，主動掌握自我照護，順利完成治療旅程。
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3">
+                    <a href="#side-effects" class="w-full sm:w-auto inline-flex items-center justify-center bg-primary text-white font-medium py-3 px-7 rounded-full hover:bg-pink-700 active:scale-95 transition shadow-md">
+                        查看護理指南 <i class="fa-solid fa-arrow-down ml-2"></i>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center bg-white text-primary border border-pink-200 font-medium py-3 px-6 rounded-full hover:bg-pink-50 active:scale-95 transition shadow-sm">
+                        <i class="fa-solid fa-comments mr-2"></i>聯絡方式（電話／LINE）
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-2/5 flex justify-center w-full">
+                <div class="bg-white/90 px-6 py-6 sm:p-8 rounded-3xl shadow-lg border border-pink-100 flex items-center justify-center space-x-5">
+                    <i class="fa-solid fa-user-nurse text-5xl sm:text-6xl text-pink-400"></i>
+                    <i class="fa-solid fa-heart-pulse text-3xl sm:text-4xl text-rose-400"></i>
+                    <i class="fa-solid fa-hand-holding-heart text-5xl sm:text-6xl text-pink-300"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main class="max-w-5xl mx-auto px-3.5 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <!-- 區塊一：化療作用原理 -->
+        <section id="mechanism" class="mb-12 md:mb-16">
+            <div class="text-center mb-6 md:mb-10">
+                <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-2">化療為什麼會有副作用？</h2>
+                <p class="text-base sm:text-lg text-gray-600">理解化療藥物的「作用原理」</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-md p-5 sm:p-7 md:p-9 border-t-4 border-pink-400 flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                <div class="md:w-1/2 space-y-3">
+                    <h3 class="text-xl sm:text-2xl font-bold text-accent flex items-center">
+                        <i class="fa-solid fa-virus-slash mr-2.5"></i>目標：生長快速的細胞
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed text-base">
+                        癌細胞的特性是「生長分裂極快」。化療藥物正是針對此特性所設計的抗癌武器。
+                    </p>
+                    <p class="text-gray-700 leading-relaxed text-base">
+                        但在攻擊癌細胞的同時，體內原本就生長快速的正常細胞也會受到波及，因而產生暫時性的副作用。
+                    </p>
+                </div>
+
+                <div class="md:w-1/2 bg-pink-50/80 p-4 sm:p-6 rounded-2xl border border-pink-100 w-full">
+                    <h4 class="font-bold text-gray-800 mb-4 text-center text-base">容易受影響的正常細胞</h4>
+                    <ul class="space-y-3.5">
+                        <li class="flex items-center">
+                            <div class="bg-pink-100 text-pink-600 w-11 h-11 rounded-full shrink-0 flex items-center justify-center mr-3.5">
+                                <i class="fa-solid fa-face-smile text-lg"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-gray-800">毛囊細胞</strong>
+                                <span class="text-sm text-gray-600">頭髮、眉毛與體毛等快速分裂細胞</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="bg-rose-100 text-rose-600 w-11 h-11 rounded-full shrink-0 flex items-center justify-center mr-3.5">
+                                <i class="fa-solid fa-bone text-lg"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-gray-800">骨髓細胞</strong>
+                                <span class="text-sm text-gray-600">紅血球、白血球與血小板等造血細胞</span>
+                            </div>
+                        </li>
+                        <li class="flex items-center">
+                            <div class="bg-orange-100 text-orange-600 w-11 h-11 rounded-full shrink-0 flex items-center justify-center mr-3.5">
+                                <i class="fa-solid fa-bowl-food text-lg"></i>
+                            </div>
+                            <div>
+                                <strong class="block text-gray-800">腸胃道細胞</strong>
+                                <span class="text-sm text-gray-600">口腔黏膜與腸胃道內壁細胞</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 定心丸提示框 -->
+            <div class="mt-5 md:mt-6 bg-amber-50 border-l-4 border-amber-400 p-4 sm:p-5 rounded-r-2xl shadow-sm flex items-start">
+                <i class="fa-regular fa-lightbulb text-amber-500 text-2xl mr-3.5 mt-0.5 shrink-0"></i>
+                <div>
+                    <h4 class="font-bold text-base sm:text-lg text-amber-900">定心丸：這是暫時的！</h4>
+                    <p class="text-sm sm:text-base text-amber-800 mt-1">大部分受影響的正常組織，在療程結束後都會迅速復原。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 區塊二：系統化護理指南（手風琴互動式） -->
+        <section id="side-effects" class="mb-12 md:mb-16">
+            <div class="text-center mb-6 md:mb-8">
+                <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-2">系統化護理指南</h2>
+                <p class="text-sm sm:text-base text-gray-600 mb-4">點擊下方各分類卡片，展開查看詳細照護方式</p>
+                <!-- 全部展開 / 全部收合按鈕 -->
+                <div class="inline-flex space-x-2.5">
+                    <button type="button" onclick="toggleAllAccordions(true)" class="text-xs sm:text-sm font-medium bg-white text-primary border border-pink-200 hover:bg-pink-50 px-4 py-2 rounded-full shadow-sm transition active:scale-95">
+                        <i class="fa-solid fa-angles-down mr-1.5"></i>全部展開
+                    </button>
+                    <button type="button" onclick="toggleAllAccordions(false)" class="text-xs sm:text-sm font-medium bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 px-4 py-2 rounded-full shadow-sm transition active:scale-95">
+                        <i class="fa-solid fa-angles-up mr-1.5"></i>全部收合
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-3 sm:space-y-4">
+
+                <!-- 1. 消化與進食 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                    <button type="button" class="accordion-btn w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center gap-3 focus:outline-none bg-orange-50/90 hover:bg-orange-100/80 transition" onclick="toggleAccordion(this)">
+                        <span class="text-base sm:text-lg font-bold text-orange-900 flex items-center">
+                            <i class="fa-solid fa-utensils w-7 text-center mr-2.5 text-orange-600 shrink-0"></i>
+                            <span>消化與進食（噁心、嘔吐）</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-orange-600 shrink-0"></i>
+                    </button>
+                    <div class="accordion-content px-4 sm:px-6 bg-white">
+                        <div class="py-5 space-y-4">
+                            <div class="bg-orange-50/70 border border-orange-200 rounded-xl p-3.5 flex items-start">
+                                <i class="fa-regular fa-clock text-orange-600 text-lg mr-3 mt-0.5 shrink-0"></i>
+                                <p class="text-sm sm:text-base text-orange-900">
+                                    <strong>發作時間：</strong>開始治療後 8 至 12 小時，可能持續數小時至數天。
+                                </p>
+                            </div>
+                            <ul class="space-y-3 text-sm sm:text-base">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>採取少量多餐：</strong>避免一次吃太飽或治療前吃太多。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>善用酸軟食物：</strong>吃酸梅、檸檬、橘子或羅漢果可抑制噁心感。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>舒緩身心：</strong>感到噁心時，嘗試深呼吸或聽音樂分散注意力。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>液體分開喝：</strong>飯前後一小時內避免飲用液體，進餐時不配湯水飲料以減少飽脹感。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>避開刺激源：</strong>避免太甜、油炸、油膩、過鹹辛辣食物，及香菸、香水等特殊氣味；食物溫度要適中。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 腸道護理 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                    <button type="button" class="accordion-btn w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center gap-3 focus:outline-none bg-amber-50/90 hover:bg-amber-100/80 transition" onclick="toggleAccordion(this)">
+                        <span class="text-base sm:text-lg font-bold text-amber-900 flex items-center">
+                            <i class="fa-solid fa-toilet w-7 text-center mr-2.5 text-amber-600 shrink-0"></i>
+                            <span>腸道護理（腹瀉與便秘）</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-amber-600 shrink-0"></i>
+                    </button>
+                    <div class="accordion-content px-4 sm:px-6 bg-white">
+                        <div class="py-5 grid md:grid-cols-2 gap-4">
+                            <!-- 腹瀉 -->
+                            <div class="bg-amber-50/60 border border-amber-200 rounded-xl p-4">
+                                <h4 class="font-bold text-amber-900 mb-3 pb-2 border-b border-amber-200">當面臨腹瀉時（黏膜受損）</h4>
+                                <ul class="space-y-2.5 text-sm sm:text-base">
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>清淡流質飲食：</strong>讓腸道休息，多喝水維持水分平衡。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>補充高鉀食物：</strong>如香蕉、無皮馬鈴薯、桃子（彌補流失的鉀離子）。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>溫水坐浴：</strong>定時熱水坐浴，減輕肛門周圍不適與感染。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>避開高纖與刺激物：</strong>避免油炸、辛辣，蔬菜水果麥片建議打汁過濾後再食用。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 便秘 -->
+                            <div class="bg-sky-50/60 border border-sky-200 rounded-xl p-4">
+                                <h4 class="font-bold text-sky-900 mb-3 pb-2 border-b border-sky-200">當面臨便秘時（藥物與活動量減少）</h4>
+                                <ul class="space-y-2.5 text-sm sm:text-base">
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>大量飲水：</strong>幫助糞便軟化。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>高纖與促蠕動飲品：</strong>多吃全穀蔬果，多喝酸梅汁、檸檬汁與黑棗汁。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>主動促進：</strong>維持每天排便習慣，做腹部按摩，體力許可下多運動。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. 口腔與黏膜 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                    <button type="button" class="accordion-btn w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center gap-3 focus:outline-none bg-rose-50/90 hover:bg-rose-100/80 transition" onclick="toggleAccordion(this)">
+                        <span class="text-base sm:text-lg font-bold text-rose-900 flex items-center">
+                            <i class="fa-solid fa-tooth w-7 text-center mr-2.5 text-rose-600 shrink-0"></i>
+                            <span>口腔與黏膜（破皮、潰瘍）</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-rose-600 shrink-0"></i>
+                    </button>
+                    <div class="accordion-content px-4 sm:px-6 bg-white">
+                        <div class="py-5 space-y-4">
+                            <p class="text-sm sm:text-base text-gray-700 bg-rose-50/60 p-3.5 rounded-xl border border-rose-100">
+                                口腔與喉嚨黏膜細胞生長快速，極易受藥物破壞導致破皮、潰瘍，甚至影響吞嚥與引發感染。
+                            </p>
+                            <ul class="space-y-3 text-sm sm:text-base">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>勤查與溫和清潔：</strong>每日自我檢查口腔，餐後使用軟毛牙刷或溫和非刺激性漱口水。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>改變飲食型態：</strong>多攝取高蛋白、維他命 C 食物；選擇清涼、柔軟的食物。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>冰塊舒緩法：</strong>化療進行時可口含冰塊減輕不適。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>配合醫囑：</strong>出現潰瘍時局部使用專用藥膏。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>避開刺激：</strong>減少熱食與刺激性食物。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. 血液與免疫（一）：白血球過低 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                    <button type="button" class="accordion-btn w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center gap-3 focus:outline-none bg-red-50/90 hover:bg-red-100/80 transition" onclick="toggleAccordion(this)">
+                        <span class="text-base sm:text-lg font-bold text-red-900 flex items-center">
+                            <i class="fa-solid fa-shield-virus w-7 text-center mr-2.5 text-red-600 shrink-0"></i>
+                            <span>血液與免疫（一）：嚴防感染（白血球過低）</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-red-600 shrink-0"></i>
+                    </button>
+                    <div class="accordion-content px-4 sm:px-6 bg-white">
+                        <div class="py-5 space-y-4">
+                            <p class="text-sm sm:text-base text-gray-700">
+                                白血球過低是化療中最危險的副作用，身體各部位（呼吸道、腸胃、泌尿等）皆極易遭受微生物感染。
+                            </p>
+                            <div class="bg-red-600 text-white rounded-xl p-3.5 sm:p-4 flex items-center shadow-sm">
+                                <i class="fa-solid fa-triangle-exclamation text-xl mr-3 shrink-0"></i>
+                                <span class="font-bold text-sm sm:text-base">警戒線：白血球 &lt; 1000 必須立即採取保護隔離措施！</span>
+                            </div>
+                            <ul class="space-y-3 text-sm sm:text-base">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>嚴格衛生：</strong>餐前／如廁後勤洗手，每日更換衣物，維持室內清潔，使用軟毛牙刷防牙齦受傷。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>全面防護：</strong>吃消毒餐，病人與接觸者均需全程戴口罩。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>增強體力：</strong>補充足夠營養維持免疫力，確保適當睡眠與運動。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>杜絕感染源：</strong>限制訪客，避免接觸感冒／水痘／麻疹患者，減少出入公共場所。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>移除風險物品：</strong>室內減少雜物堆放，絕對避免擺放鮮花。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. 血液與免疫（二）：貧血疲倦與預防出血 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                    <button type="button" class="accordion-btn w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center gap-3 focus:outline-none bg-red-50/90 hover:bg-red-100/80 transition" onclick="toggleAccordion(this)">
+                        <span class="text-base sm:text-lg font-bold text-red-900 flex items-center">
+                            <i class="fa-solid fa-droplet w-7 text-center mr-2.5 text-red-500 shrink-0"></i>
+                            <span>血液與免疫（二）：貧血疲倦與預防出血</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-red-500 shrink-0"></i>
+                    </button>
+                    <div class="accordion-content px-4 sm:px-6 bg-white">
+                        <div class="py-5 grid md:grid-cols-2 gap-4">
+                            <!-- 紅血球減少 -->
+                            <div class="bg-rose-50/60 border border-rose-200 rounded-xl p-4">
+                                <h4 class="font-bold text-rose-900 mb-3 pb-2 border-b border-rose-200">
+                                    紅血球減少<br><span class="text-xs font-normal text-rose-700">（貧血 / 缺氧 / 頭暈 / 疲倦 / 怕冷）</span>
+                                </h4>
+                                <ul class="space-y-2.5 text-sm sm:text-base">
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>保留體力：</strong>充分休息，限制活動量以減少耗損。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>放慢動作：</strong>避免快速變換姿勢，減少頭暈跌倒風險。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>補血飲食：</strong>多攝取高鐵、高蛋白、高維他命與礦物質（如肉類、深綠色蔬菜、動物肝臟）。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 血小板過低 -->
+                            <div class="bg-purple-50/60 border border-purple-200 rounded-xl p-4">
+                                <h4 class="font-bold text-purple-900 mb-3 pb-2 border-b border-purple-200">
+                                    血小板過低<br><span class="text-xs font-normal text-purple-700">（凝血障礙 / 瘀青 / 流血 / 血尿便）</span>
+                                </h4>
+                                <ul class="space-y-2.5 text-sm sm:text-base">
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>密切監測：</strong>自我觀察有無出血徵象（牙齦流血、黑便等），使用軟毛牙刷。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>避免碰撞：</strong>不從事可能受傷的運動，避免用力擤鼻涕。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa-solid fa-circle-xmark text-rose-500 mt-1 mr-2 shrink-0"></i>
+                                        <span><strong>停用特定藥物：</strong>避免使用抗凝血劑、阿斯匹靈及酒精（需經醫師評估）。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. 外觀與皮膚 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                    <button type="button" class="accordion-btn w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center gap-3 focus:outline-none bg-pink-50/90 hover:bg-pink-100/80 transition" onclick="toggleAccordion(this)">
+                        <span class="text-base sm:text-lg font-bold text-pink-900 flex items-center">
+                            <i class="fa-solid fa-hands-bubbles w-7 text-center mr-2.5 text-pink-600 shrink-0"></i>
+                            <span>外觀與皮膚（毛髮、皮膚與指甲）</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-pink-600 shrink-0"></i>
+                    </button>
+                    <div class="accordion-content px-4 sm:px-6 bg-white">
+                        <div class="py-5 space-y-4">
+                            <p class="text-sm sm:text-base text-gray-700 bg-pink-50/60 p-3.5 rounded-xl border border-pink-100">
+                                化療會波及全身毛囊（頭髮、眉毛、體毛等）及皮膚細胞。掉髮不一定會發生，而色素沉著通常在治療後幾個月內會自然消退。指甲可能變得脆弱、易斷或出現帶狀紋路，請保持修剪與清潔。
+                            </p>
+                            <h4 class="font-bold text-gray-800">日常護理要點</h4>
+                            <ul class="space-y-3 text-sm sm:text-base">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>對抗乾燥與發癢：</strong>皮膚乾燥發癢時塗抹乳液；若因潮濕發癢則敷抹爽身粉。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>防護紫外線：</strong>外出務必使用防曬乳液保護脆弱皮膚。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>青春痘處理：</strong>保持臉部清潔，絕對不要用手擠壓青春痘以免感染。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. 神經與肌肉系統 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                    <button type="button" class="accordion-btn w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center gap-3 focus:outline-none bg-teal-50/90 hover:bg-teal-100/80 transition" onclick="toggleAccordion(this)">
+                        <span class="text-base sm:text-lg font-bold text-teal-900 flex items-center">
+                            <i class="fa-solid fa-brain w-7 text-center mr-2.5 text-teal-600 shrink-0"></i>
+                            <span>神經與肌肉系統（居家防護）</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-teal-600 shrink-0"></i>
+                    </button>
+                    <div class="accordion-content px-4 sm:px-6 bg-white">
+                        <div class="py-5 space-y-4">
+                            <p class="text-sm sm:text-base text-gray-700 bg-teal-50/60 p-3.5 rounded-xl border border-teal-100">
+                                部分藥物會引發周邊神經病變（手腳刺痛、麻木）、平衡失控、聽覺喪失或肌肉無力痠痛。
+                            </p>
+                            <ul class="space-y-3 text-sm sm:text-base">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>防滑與防跌：</strong>浴室地板務必鋪設防滑墊；走路及上下樓梯時需特別小心。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>避開危險物品：</strong>若手指出現麻木感，避免拿取尖銳、過燙或其他危險物品。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>尋求醫療協助：</strong>出現神經肌肉變化時，主動告知醫師，必要時可配合藥物治療緩解。</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. 泌尿與代謝系統 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                    <button type="button" class="accordion-btn w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center gap-3 focus:outline-none bg-cyan-50/90 hover:bg-cyan-100/80 transition" onclick="toggleAccordion(this)">
+                        <span class="text-base sm:text-lg font-bold text-cyan-900 flex items-center">
+                            <i class="fa-solid fa-glass-water w-7 text-center mr-2.5 text-cyan-600 shrink-0"></i>
+                            <span>泌尿與代謝系統（排泄與異常）</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-cyan-600 shrink-0"></i>
+                    </button>
+                    <div class="accordion-content px-4 sm:px-6 bg-white">
+                        <div class="py-5 space-y-4">
+                            <p class="text-sm sm:text-base text-gray-700">
+                                化療藥物及其代謝物需經由腎臟排泄，可能對腎臟及膀胱造成負擔。部分抗癌藥物會使尿液顏色及味道改變，這是正常現象，請勿過度焦慮。
+                            </p>
+                            <ul class="space-y-3 text-sm sm:text-base">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>大量飲水：</strong>鼓勵多喝水以維持足夠的尿量，幫助藥物代謝。</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 mt-1 mr-2.5 shrink-0"></i>
+                                    <span><strong>定期監測：</strong>配合醫療團隊定期檢查腎臟功能及尿液常規變化（必要時會使用解毒劑）。</span>
+                                </li>
+                            </ul>
+                            <div class="bg-amber-50 border border-amber-300 rounded-xl p-3.5 flex items-start text-amber-900">
+                                <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg mr-2.5 mt-0.5 shrink-0"></i>
+                                <span class="text-sm sm:text-base">
+                                    <strong>危險徵兆通報：</strong>若出現排尿灼熱／疼痛、頻尿／尿急、紅尿／血尿、發燒／發冷，請立即告知醫護！
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. 生殖系統影響 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                    <button type="button" class="accordion-btn w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center gap-3 focus:outline-none bg-indigo-50/90 hover:bg-indigo-100/80 transition" onclick="toggleAccordion(this)">
+                        <span class="text-base sm:text-lg font-bold text-indigo-900 flex items-center">
+                            <i class="fa-solid fa-venus-mars w-7 text-center mr-2.5 text-indigo-600 shrink-0"></i>
+                            <span>生殖系統影響（生理改變與生育）</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-indigo-600 shrink-0"></i>
+                    </button>
+                    <div class="accordion-content px-4 sm:px-6 bg-white">
+                        <div class="py-5 space-y-4">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="bg-pink-50/60 border border-pink-200 rounded-xl p-4">
+                                    <h4 class="font-bold text-pink-900 mb-2.5">女性生理方面</h4>
+                                    <ul class="space-y-2 text-sm sm:text-base">
+                                        <li><strong>症狀：</strong>卵巢受損、荷爾蒙減少，月經不規則或停止，可能引發暫時／永久不孕及類更年期症狀（臉潮紅、陰道乾澀）。</li>
+                                        <li><strong>舒緩不適：</strong>改穿棉質／通氣內褲防感染；性生活可使用水溶性潤滑劑。</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-indigo-50/60 border border-indigo-200 rounded-xl p-4">
+                                    <h4 class="font-bold text-indigo-900 mb-2.5">男性生理方面</h4>
+                                    <ul class="space-y-2 text-sm sm:text-base">
+                                        <li><strong>症狀：</strong>精蟲數目及活動力降低，可能導致暫時或永久不孕。</li>
+                                        <li><strong>生育保留：</strong>治療前可與醫師討論「精子冷凍」選項。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-teal-800 text-white rounded-xl p-3.5 sm:p-4 flex items-start">
+                                <i class="fa-solid fa-triangle-exclamation text-amber-300 text-lg mr-3 mt-0.5 shrink-0"></i>
+                                <span class="text-sm sm:text-base">
+                                    <strong>嚴格避孕：</strong>化療藥物可能傷及染色體導致胎兒畸形，治療期間務必採取有效的避孕措施。配偶間應多給予心理支持。
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. 其他常見反應 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden">
+                    <button type="button" class="accordion-btn w-full px-4 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center gap-3 focus:outline-none bg-slate-100 hover:bg-slate-200/80 transition" onclick="toggleAccordion(this)">
+                        <span class="text-base sm:text-lg font-bold text-slate-800 flex items-center">
+                            <i class="fa-solid fa-temperature-half w-7 text-center mr-2.5 text-slate-600 shrink-0"></i>
+                            <span>其他常見反應（類感冒與水腫）</span>
+                        </span>
+                        <i class="fa-solid fa-chevron-down accordion-icon text-slate-600 shrink-0"></i>
+                    </button>
+                    <div class="accordion-content px-4 sm:px-6 bg-white">
+                        <div class="py-5 grid md:grid-cols-2 gap-4">
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2.5">
+                                <h4 class="font-bold text-slate-900 text-base">類似感冒的症狀</h4>
+                                <p class="text-sm sm:text-base"><strong>表現：</strong>化療後幾小時到幾天內，可能出現肌肉痛、頭痛、疲倦、輕度發燒／發冷及缺乏食慾。</p>
+                                <p class="text-sm sm:text-base"><strong>說明：</strong>這是由於感染或癌病本身／藥物引起的自然免疫反應。</p>
+                                <div class="inline-flex items-center bg-rose-100 text-rose-800 text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full">
+                                    <i class="fa-solid fa-hourglass-half mr-1.5"></i>時效：通常只會持續 1 至 3 天
+                                </div>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-2.5">
+                                <h4 class="font-bold text-slate-900 text-base">體液滯留（水腫）</h4>
+                                <p class="text-sm sm:text-base"><strong>表現：</strong>身體出現浮腫。</p>
+                                <p class="text-sm sm:text-base"><strong>說明：</strong>由化療改變體內荷爾蒙平衡、藥物本身作用或疾病引起，配合醫師指示觀察即可。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 區塊三：暖心結語 -->
+        <section id="conclusion" class="bg-white rounded-3xl shadow-lg border border-pink-100 overflow-hidden mb-8 md:mb-12">
+            <div class="flex flex-col md:flex-row">
+                <div class="p-6 sm:p-8 md:p-10 md:w-2/3 flex flex-col justify-center">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-primary mb-4 leading-snug">
+                        結語：副作用是身體抗戰的痕跡，不是阻礙
+                    </h2>
+                    <div class="space-y-3 text-base text-gray-700 leading-relaxed">
+                        <p>化學治療是目前對抗癌症最有效的武器之一。</p>
+                        <p>我們了解副作用常令人心生畏懼，甚至成為中斷治療的理由。但只要理解身體的變化、主動掌握護理知識，您就能大幅減少不適，奪回生活的主控權。</p>
+                        <p class="font-semibold text-primary pt-1">
+                            請記得，您並不孤單。醫療團隊與正確的照護方法，將陪您走完這趟治癒之旅。
+                        </p>
+                    </div>
+                </div>
+                <div class="md:w-1/3 bg-gradient-to-br from-pink-100 to-rose-200 p-8 flex flex-col items-center justify-center text-center">
+                    <div class="bg-white/90 w-20 h-20 rounded-full flex items-center justify-center shadow-md mb-4">
+                        <i class="fa-solid fa-hands-holding-circle text-4xl text-primary"></i>
+                    </div>
+                    <p class="text-primary font-bold text-lg">我們一直都在</p>
+                    <p class="text-pink-800/80 text-sm mt-1">陪伴您安心走過每次療程</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 頁尾與聯絡方式 -->
+    <footer id="contact" class="bg-gray-800 text-gray-300 py-8 pb-12 text-center">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="mb-6">
+                <p class="text-base sm:text-lg text-pink-300 font-bold mb-1">
+                    <i class="fa-solid fa-headset mr-1.5"></i>聯絡方式：電話或 LINE
+                </p>
+                <p class="text-xs sm:text-sm text-gray-400 mb-4">
+                    點擊電話即可直接撥打並複製號碼，或透過 LINE 聯繫個管師
+                </p>
+
+                <!-- 電話（含分機）與 LINE 聯絡按鈕群組 -->
+                <div class="flex flex-col sm:flex-row flex-wrap items-center sm:items-start justify-center gap-4 sm:gap-5">
+                    <!-- 電話與分機區塊（手機版會完整顯示在 LINE 按鈕上方） -->
+                    <div class="w-full sm:w-auto flex flex-col items-center">
+                        <a href="tel:034941234" target="_top" onclick="copyPhoneNumber('03-4941234')" class="w-full sm:w-auto min-h-[58px] inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-pink-600 active:scale-95 text-white px-7 py-3.5 rounded-full shadow-md transition">
+                            <i class="fa-solid fa-phone text-lg shrink-0"></i>
+                            <span class="inline-flex items-baseline gap-1.5">
+                                <span class="text-sm font-medium text-pink-100">電話</span>
+                                <span class="text-2xl font-bold tracking-wider">03-4941234</span>
+                            </span>
+                        </a>
+                        <!-- 分機號碼說明 -->
+                        <p class="mt-2.5 text-xs sm:text-sm text-gray-300">
+                            分機號碼：<span class="text-pink-200 font-semibold">4166</span>（范個管師）或 <span class="text-pink-200 font-semibold">4168</span>（游個管師）
+                        </p>
+                    </div>
+
+                    <!-- LINE 線上諮詢官方連結按鈕 -->
+                    <a href="https://lin.ee/5dv21EJ" target="_blank" rel="noopener noreferrer" onclick="copyLineLink('https://lin.ee/5dv21EJ')" class="w-full sm:w-auto min-h-[58px] inline-flex items-center justify-center bg-[#06C755] hover:bg-[#05b34c] active:scale-95 text-white font-semibold px-6 py-3.5 rounded-full shadow-md transition">
+                        <i class="fa-brands fa-line text-xl mr-2"></i>LINE 線上諮詢
+                    </a>
+                </div>
+            </div>
+            <p class="mb-2 text-xs sm:text-sm text-gray-400">本網頁資訊僅供衛教參考，實際治療與護理請遵從主治醫師與醫療團隊指示。</p>
+            <p class="text-xs text-gray-500">© 2026 乳癌衛教資訊. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 複製成功提示訊息（Toast） -->
+    <div id="copy-toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-gray-900/95 text-white text-sm font-medium px-5 py-2.5 rounded-full shadow-xl border border-pink-400/50 opacity-0 pointer-events-none transition-opacity duration-300 whitespace-nowrap">
+        <i class="fa-solid fa-circle-check text-pink-400 mr-2"></i><span id="copy-toast-text">已複製電話號碼</span>
+    </div>
+
+    <!-- 手機版回到頂部懸浮按鈕 -->
+    <button id="back-to-top" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-5 right-4 z-40 bg-primary/95 hover:bg-pink-700 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 active:scale-95" aria-label="回到頂部">
+        <i class="fa-solid fa-arrow-up text-lg"></i>
+    </button>
+
+    <script>
+        // 初始化：預設展開第一個手風琴，並綁定縮放與捲動事件
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const firstAccordion = document.querySelector('.accordion-btn');
+                if (firstAccordion) {
+                    setAccordionState(firstAccordion, true);
+                }
+
+                // 螢幕旋轉或視窗縮放時重新計算展開高度，避免手機文字被裁切
+                window.addEventListener('resize', updateOpenAccordionsHeight);
+
+                // 監聽頁面捲動以顯示「回到頂部」按鈕
+                const backToTopBtn = document.getElementById('back-to-top');
+                window.addEventListener('scroll', () => {
+                    if (!backToTopBtn) return;
+                    if (window.scrollY > 280) {
+                        backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                        backToTopBtn.classList.add('opacity-100');
+                    } else {
+                        backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                        backToTopBtn.classList.remove('opacity-100');
+                    }
+                });
+            } catch (err) {
+                console.error('初始化互動功能時發生錯誤:', err);
+            }
+        });
+
+        // 設定單一手風琴的展開或收合狀態
+        function setAccordionState(button, shouldOpen) {
+            const content = button.nextElementSibling;
+            if (!content) return;
+            if (shouldOpen) {
+                button.classList.add('active');
+                content.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            } else {
+                button.classList.remove('active');
+                content.classList.remove('active');
+                content.style.maxHeight = '0px';
+            }
+        }
+
+        // 點擊切換單一手風琴
+        function toggleAccordion(button) {
+            const isActive = button.classList.contains('active');
+            setAccordionState(button, !isActive);
+        }
+
+        // 全部展開或全部收合
+        function toggleAllAccordions(shouldOpen) {
+            const buttons = document.querySelectorAll('.accordion-btn');
+            buttons.forEach(btn => setAccordionState(btn, shouldOpen));
+        }
+
+        // 重新計算所有已展開手風琴的高度
+        function updateOpenAccordionsHeight() {
+            const openContents = document.querySelectorAll('.accordion-content.active');
+            openContents.forEach(content => {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            });
+        }
+
+        // 切換標準字體與大字體模式（方便手機與長輩閱讀）
+        function toggleFontSize() {
+            const htmlEl = document.documentElement;
+            const labelEl = document.getElementById('font-toggle-label');
+            const isLarge = htmlEl.classList.toggle('large-text');
+            if (labelEl) {
+                labelEl.textContent = isLarge ? '標準字' : '大字體';
+            }
+            // 等待字體大小過渡動畫完成後重新計算已展開手風琴高度
+            setTimeout(updateOpenAccordionsHeight, 250);
+        }
+
+        // 複製文字至剪貼簿的共用函式
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            tempInput.setAttribute('readonly', '');
+            tempInput.style.position = 'fixed';
+            tempInput.style.opacity = '0';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+        }
+
+        // 複製電話號碼至剪貼簿並顯示提示訊息
+        let toastTimer = null;
+        function copyPhoneNumber(phoneText) {
+            try {
+                copyToClipboard(phoneText);
+                showCopyToast('已複製電話 ' + phoneText + '，可直接貼上撥打');
+            } catch (err) {
+                console.error('複製電話號碼失敗:', err);
+                showCopyToast('請手動撥打：' + phoneText);
+            }
+        }
+
+        // 複製 LINE 連結至剪貼簿作為預覽環境備援
+        function copyLineLink(lineUrl) {
+            try {
+                copyToClipboard(lineUrl);
+                showCopyToast('已複製 LINE 連結，若未跳轉可貼至瀏覽器開啟');
+            } catch (err) {
+                console.error('複製 LINE 連結失敗:', err);
+                showCopyToast('LINE 連結：' + lineUrl);
+            }
+        }
+
+        // 顯示底部提示訊息
+        function showCopyToast(message) {
+            const toast = document.getElementById('copy-toast');
+            const toastText = document.getElementById('copy-toast-text');
+            if (!toast || !toastText) return;
+
+            toastText.textContent = message;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 2600);
+        }
+    </script>
+</body>
+</html>
